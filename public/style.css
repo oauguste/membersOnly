@@ -1,0 +1,8 @@
+.post {
+  background-color: #ffeb3b;
+  border: 1px solid #ffc107;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+}

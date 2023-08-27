@@ -1,0 +1,26 @@
+extends layout 
+
+block content
+
+    title Login Page
+
+    body
+        div.container
+            h2 Login
+            form(action="/catalog/login" method="post")
+
+                div.form-group
+                    label(for="username") Username: 
+                    input#username(type="username" name="username" placeholder="Enter your username" required)
+                div.form-group
+                    label(for="password") Password: 
+                    input#password(type="password" name="password" placeholder="Enter your password" required)
+                div.form-group
+                    button(type="submit") Login
+            if success
+                .alert.alert-success #{success}
+
+            if error
+                .alert.alert-danger #{error}
+
+                a(href="/catalog/register") Don't have an account? Register here.

@@ -1,0 +1,34 @@
+extends layout 
+
+block content 
+
+    body
+        div.container.mt-5
+            div.row.justify-content-center
+                div.col-md-6
+                    h2.text-center #{title}
+                    form(action="/catalog/register" method="post")
+                        div.form-group
+                            label(for="first_name") First name:
+                            input.form-control#first_name(type="text" name="first_name" placeholder="Enter your first name" required)
+                        div.form-group
+                            label(for="last_name") Last Name:
+                            input.form-control#last_name(type="text" name="last_name" placeholder="Enter your last name" required)    
+                        div.form-group
+                            label(for="username") Username:
+                            input.form-control#username(type="text" name="username" placeholder="Enter your username" required)  
+                        div.form-group
+                            label(for="emailAddress") Email:
+                            input.form-control#emailAddress(type="email" name="emailAddress" placeholder="Enter your email" required)
+                        div.form-group
+                            label(for="membership_status") Membership Status:
+                            select.form-control(name="membership_status" required)
+                                option(value="premium") Premium
+                                option(value="basic") Basic
+                        div.form-group
+                            label(for="password") Password:
+                            input.form-control#password(type="password" name="password" placeholder="Enter your password" required)
+                        div.form-group.text-center
+                            button.btn.btn-primary(type="submit") Register Account
+                        div.text-center.mt-3
+                            a(href="/catalog/login") Already have an account? Login here.
