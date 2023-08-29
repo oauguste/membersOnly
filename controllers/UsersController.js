@@ -110,9 +110,60 @@ exports.usersControllers_login_user_get = asyncHandler(
 exports.usersControllers_login_user_post = asyncHandler(
   async (req, res, next) => {
     passport.authenticate("local", {
-      successRedirect: "/",
+      successRedirect: "/catalog/userpost",
       failureRedirect: "/catalog/login",
       failureFlash: "Invalid username or password",
     })(req, res, next);
   }
 );
+exports.usersControllers_create_posts_get = asyncHandler(
+  async (req, res, next) => {
+    if (req.user) {
+      res.render("userpost", {
+        title: req.user.username,
+      });
+    } else {
+      // handle not logged-in scenario
+      res.redirect("/login");
+    }
+  }
+);
+
+exports.usersControllers_create_posts_post = [
+  body("posttitle").trim().isLength({ min: 1 }).escape(),
+  body("postmessage").trim().isLength({ min: 1 }).escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      req.flash(
+        "error",
+        "Validation errors occurred. Please try again."
+      );
+      if (req.user) {
+        return res.redirect("/catalog/userpost");
+      } else {
+        return res.redirect("/catalog/login");
+      }
+    }
+
+    const userPost = new Posts({
+      title: req.body.posttitle,
+      user: req.user._id,
+      message: req.body.postmessage,
+      messageCreatedDate: Date.now(),
+    });
+
+    try {
+      await userPost.save();
+      req.flash("success", "Post successfully created");
+      res.redirect("/catalog/allposts");
+    } catch (error) {
+      req.flash(
+        "error",
+        "An error has occured while creating the post"
+      );
+      return next(error);
+    }
+  }),
+];

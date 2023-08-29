@@ -1,0 +1,20 @@
+extends layout
+
+block content
+
+    h1 #{title} 
+
+    div
+
+        div.container
+            h2 Write post 
+            form(action="/catalog/userpost" method="post")
+
+                div.form-group
+                    label(for="posttitle") Post title
+                    input#posttitle(type="text" name="posttitle" placeholder="Enter your post" required)
+                div.form-group
+                    label(for="postmessage") Post:
+                    input#postmessage(type="text" name="postmessage" placeholder="Enter your post" required)
+                div.form-group
+                    button(type="submit") Submit post
