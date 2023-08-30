@@ -14,7 +14,8 @@ const catalogRouter = require("./routes/catalog");
 const RateLimit = require("express-rate-limit");
 const compression = require("compression");
 const helmet = require("helmet");
-const MongoStore = require("connect-mongo")(session);
+
+const MongoStore = require("connect-mongo");
 
 const app = express();
 const dev_db_url =
