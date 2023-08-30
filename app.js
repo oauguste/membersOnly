@@ -54,7 +54,7 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: "cats",
     resave: false,
     saveUninitialized: true,
   })
