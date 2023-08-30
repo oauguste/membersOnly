@@ -16,7 +16,11 @@ const compression = require("compression");
 const helmet = require("helmet");
 
 const app = express();
-
+const dev_db_url =
+  "mongodb+srv://your_user_name:your_password@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.set("strictQuery", false);
+//views engine setup
 main().catch((err) => console.log(err));
 async function main() {
   try {
@@ -26,11 +30,7 @@ async function main() {
     console.error("Failed to connect to MongoDB", err);
   }
 }
-const dev_db_url =
-  "mongodb+srv://your_user_name:your_password@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority";
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
-mongoose.set("strictQuery", false);
-//views engine setup
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(logger("dev"));
