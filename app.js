@@ -56,7 +56,7 @@ app.use(cookieParser());
 app.use(
   session({
     secret: "foo",
-    store: new MongoStore(options),
+    store: MongoStore.create({ mongoUrl: mongoDB }),
   })
 );
 
