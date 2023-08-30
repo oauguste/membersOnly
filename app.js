@@ -14,7 +14,7 @@ const catalogRouter = require("./routes/catalog");
 const RateLimit = require("express-rate-limit");
 const compression = require("compression");
 const helmet = require("helmet");
-
+const port = process.env.PORT || 3000;
 const MongoStore = require("connect-mongo");
 
 const app = express();
@@ -103,7 +103,7 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-app.listen(3100, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log("Server Running on port 3100");
 });
 
