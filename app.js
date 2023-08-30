@@ -18,9 +18,14 @@ const port = process.env.PORT || 3000;
 const MongoStore = require("connect-mongo");
 
 const app = express();
-const dev_db_url =
-  "mongodb+srv://augusteosnac:helixx0099@cluster0.k07zqhb.mongodb.net/?retryWrites=true&w=majority";
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
+app.set("trust proxy", 1);
+// const dev_db_url =
+//   "mongodb+srv://augusteosnac:helixx0099@cluster0.k07zqhb.mongodb.net/?retryWrites=true&w=majority";
+const sessionSecret =
+  process.env.SESSION_SECRET || "default-session-secret";
+const mongoDB =
+  process.env.MONGODB_URI ||
+  "fallback-db-connection-string";
 mongoose.set("strictQuery", false);
 //views engine setup
 main().catch((err) => console.log(err));
@@ -56,7 +61,7 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: "foo",
+    secret: sessionSecret,
     resave: false, // setting resave option
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: mongoDB }),
