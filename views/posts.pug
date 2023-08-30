@@ -1,17 +1,60 @@
 extends layout
 
 block content
+    style.
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(to right, #f2f2f2, #e6e6e6);
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .post {
+            border: 1px solid #ccc;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            transition: box-shadow 0.3s ease;
+        }
+        .post:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .post-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .post-username {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+            word-wrap: break-word;
+        }
+        .post-message {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #666;
+        }
+        .post-date {
+            font-size: 14px;
+            color: #888;
+        }
+        @media (max-width: 768px) {
+            .post-username {
+                font-size: 16px;
+            }
+        }
 
-    h1 #{title}
-
-    div
-
+    div.container
         each post in posts
-
             div.post
-
-                h2 Post Title: #{post.title}
-
-                h4 Username: #{post.username}
-                p Post: #{post.message}
-                p Date Posted: #{post.date}
+                h2.post-title #{post.title}
+                h4.post-username(style="overflow-wrap: break-word;") written by: #{post.username}
+                p.post-message #{post.message}
+                p.post-date Date Posted: #{post.date}

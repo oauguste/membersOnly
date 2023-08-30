@@ -1,11 +1,27 @@
-extends layout 
+extends layout
 
-block content 
+block content
+
+    style.
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h2.text-center {
+                font-size: 1.5em;
+            }
+            input.form-control, select.form-control {
+                font-size: 14px;
+            }
+            button.btn.btn-primary {
+                font-size: 16px;
+            }
+        }
 
     body
         div.container.mt-5
             div.row.justify-content-center
-                div.col-md-6
+                div.col-12.col-md-6
                     h2.text-center #{title}
                     form(action="/catalog/register" method="post")
                         div.form-group
@@ -13,10 +29,10 @@ block content
                             input.form-control#first_name(type="text" name="first_name" placeholder="Enter your first name" required)
                         div.form-group
                             label(for="last_name") Last Name:
-                            input.form-control#last_name(type="text" name="last_name" placeholder="Enter your last name" required)    
+                            input.form-control#last_name(type="text" name="last_name" placeholder="Enter your last name" required)
                         div.form-group
                             label(for="username") Username:
-                            input.form-control#username(type="text" name="username" placeholder="Enter your username" required)  
+                            input.form-control#username(type="text" name="username" placeholder="Enter your username" required)
                         div.form-group
                             label(for="emailAddress") Email:
                             input.form-control#emailAddress(type="email" name="emailAddress" placeholder="Enter your email" required)

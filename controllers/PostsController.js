@@ -7,6 +7,15 @@ const Posts = require("../model/posts");
 const Users = require("../model/users");
 const asyncHandler = require("express-async-handler");
 
+exports.postsControllers_index = asyncHandler(
+  async (req, res, next) => {
+    res.render("homepage", {
+      title: "Clubhouse Home",
+      user: req.user,
+    });
+  }
+);
+
 exports.postsControllers_all_posts_get = asyncHandler(
   async (req, res, next) => {
     const allPosts = await Posts.find()

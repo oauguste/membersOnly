@@ -5,6 +5,10 @@ const posts_Controllers = require("../controllers/PostsController");
 const users_Controllers = require("../controllers/UsersController");
 
 //Posts
+router.get(
+  "/home",
+  posts_Controllers.postsControllers_index
+);
 
 router.get(
   "/allPosts",

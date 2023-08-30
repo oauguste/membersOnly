@@ -1,0 +1,30 @@
+extends layout
+
+block content
+
+    div.container-fluid.bg-primary.text-white.py-5.d-flex.flex-column.justify-content-center.min-vh-50
+        div.row.justify-content-center
+            div.col-md-8.col-12.text-center
+                h1.display-3.mb-4(style="font-size: calc(1.5rem + 1vw);") Welcome to Our Clubhouse!
+                p.lead.mb-4 A community where premium and basic members can interact, share, and grow.
+
+
+    div.container.text-center.py-5.d-flex.flex-column.justify-content-center.min-vh-25
+        if user
+            h3.mb-3 Hello, #{user.username}!
+            p.mb-4 Glad to see you back!
+            div.btn-toolbar.justify-content-center
+                a.btn.btn-lg.btn-success.m-2(href='/catalog/allposts') View all Posts
+                a.btn.btn-lg.btn-info.m-2(href='/catalog/userpost') Write a Post
+        else
+            h3.mb-3 Join Our Community!
+            p.mb-4 Sign in or register to explore more.
+            div.btn-toolbar.justify-content-center
+                a.btn.btn-lg.btn-primary.m-2(href='/catalog/login') Login
+                a.btn.btn-lg.btn-secondary.m-2(href='/catalog/register') Register
+
+    div.container-fluid.bg-light.py-5.d-flex.flex-column.justify-content-center.min-vh-25
+        div.row.justify-content-center
+            div.col-md-8.text-center
+                h4.mb-3 Features
+                p.mb-4 We offer a range of features to make your experience enjoyable.
