@@ -57,6 +57,8 @@ app.use(cookieParser());
 app.use(
   session({
     secret: "foo",
+    resave: false, // setting resave option
+    saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: mongoDB }),
   })
 );
