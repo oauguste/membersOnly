@@ -11,13 +11,14 @@ const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const indexRouter = require("./routes/index");
 const catalogRouter = require("./routes/catalog");
-
+const RateLimit = require("express-rate-limit");
 const compression = require("compression");
 const helmet = require("helmet");
 
 const app = express();
-
-const mongoDB = process.env.MONGODB_URI;
+const dev_db_url =
+  "mongodb+srv://augusteosnac:helixx0099@cluster0.k07zqhb.mongodb.net/?retryWrites=true&w=majoritymongodb+srv://your_user_name:your_password@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.set("strictQuery", false);
 
 main().catch((err) => console.log(err));
@@ -77,6 +78,13 @@ app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();
 });
+
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+// Apply rate limiter to all requests
+app.use(limiter);
 //Routing
 app.use("/", indexRouter);
 app.use("/catalog", catalogRouter);
