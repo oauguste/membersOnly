@@ -56,7 +56,7 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: "cats",
     store: new MongoStore(options),
   })
 );
