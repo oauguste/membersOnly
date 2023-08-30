@@ -14,6 +14,7 @@ const catalogRouter = require("./routes/catalog");
 const RateLimit = require("express-rate-limit");
 const compression = require("compression");
 const helmet = require("helmet");
+const MongoStore = require("connect-mongo")(session);
 
 const app = express();
 const dev_db_url =
@@ -56,8 +57,7 @@ app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
+    store: new MongoStore(options),
   })
 );
 
