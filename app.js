@@ -104,7 +104,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(port, "0.0.0.0", () => {
-  console.log("Server Running on port 3100");
+  console.log(`Server Running on port ${port}`);
 });
 
 module.exports = app;
